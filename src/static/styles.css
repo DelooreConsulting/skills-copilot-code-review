@@ -665,10 +665,230 @@ footer {
   background-color: rgba(255, 255, 255, 0.3);
 }
 
+.header-actions {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  width: 100%;
+  gap: 12px;
+  padding: 0 12px;
+}
+
+.header-spacer {
+  min-width: 140px;
+}
+
+#user-controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  min-width: 140px;
+}
+
+.secondary-button {
+  background: rgba(255, 255, 255, 0.12);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.secondary-button.small {
+  padding: 6px 10px;
+  font-size: 0.7rem;
+}
+
+.danger-button {
+  background: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.danger-button.small {
+  padding: 6px 10px;
+  font-size: 0.7rem;
+}
+
 .announcement-banner {
-  background-color: var(--success);
+  background: linear-gradient(135deg, #2e7d32, #43a047);
   color: var(--primary-text);
   text-align: center;
-  padding: 15px;
+  padding: 15px 18px;
   font-weight: bold;
+  border-radius: 12px;
+  box-shadow: 0 8px 22px rgba(46, 125, 50, 0.2);
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.announcement-modal-content {
+  width: min(92vw, 700px);
+  max-width: 700px;
+}
+
+.announcement-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.eyebrow {
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--primary-light);
+  font-size: 0.72rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.announcement-date-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.announcement-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.announcement-form textarea,
+.announcement-form input {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font: inherit;
+}
+
+.announcement-form textarea:focus,
+.announcement-form input:focus {
+  outline: none;
+  border-color: var(--primary-light);
+  box-shadow: 0 0 0 3px rgba(83, 75, 174, 0.12);
+}
+
+.announcement-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.cancel-btn,
+.primary-btn {
+  border-radius: 999px;
+  padding: 9px 16px;
+  font-weight: 700;
+}
+
+.cancel-btn {
+  background: #eef2f7;
+  color: var(--text-primary);
+}
+
+.primary-btn {
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+}
+
+.announcement-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 52vh;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.announcement-card {
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--success);
+  background: linear-gradient(180deg, #ffffff, #f7fafc);
+  border-radius: 12px;
+  padding: 14px 14px 10px;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.05);
+}
+
+.announcement-card.expired {
+  border-left-color: var(--warning);
+  opacity: 0.8;
+}
+
+.announcement-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.announcement-status {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--success);
+}
+
+.announcement-card.expired .announcement-status {
+  color: var(--warning);
+}
+
+.announcement-meta {
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+}
+
+.announcement-copy {
+  color: var(--text-primary);
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.announcement-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.announcement-empty {
+  color: var(--text-secondary);
+  background: #f8fafc;
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+  padding: 14px;
+  text-align: center;
+}
+
+@media (max-width: 680px) {
+  .header-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .header-spacer {
+    display: none;
+  }
+
+  #user-controls {
+    justify-content: center;
+    min-width: unset;
+  }
+
+  .announcement-date-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .announcement-header-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
 }

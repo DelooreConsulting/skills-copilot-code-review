@@ -2,6 +2,8 @@
 MongoDB database configuration and setup for Mergington High School API
 """
 
+import uuid
+
 from pymongo import MongoClient
 from argon2 import PasswordHasher, exceptions as argon2_exceptions
 
@@ -10,6 +12,7 @@ client = MongoClient('mongodb://localhost:27017/')
 db = client['mergington_high']
 activities_collection = db['activities']
 teachers_collection = db['teachers']
+announcements_collection = db['announcements']
 
 # Methods
 
@@ -49,6 +52,13 @@ def init_database():
         for teacher in initial_teachers:
             teachers_collection.insert_one(
                 {"_id": teacher["username"], **teacher})
+
+    # Initialize announcements if empty
+    if announcements_collection.count_documents({}) == 0:
+        for announcement in initial_announcements:
+            doc = dict(announcement)
+            doc.setdefault("_id", str(uuid.uuid4()))
+            announcements_collection.insert_one(doc)
 
 
 # Initial database if empty
@@ -205,5 +215,22 @@ initial_teachers = [
         "display_name": "Principal Martinez",
         "password": hash_password("admin789"),
         "role": "admin"
+    }
+]
+
+initial_announcements = [
+    {
+        "_id": "welcome-registration-window",
+        "message": "📢 Activity registration is open until the end of the month. Don’t miss your chance to join a club this semester!",
+        "start_date": None,
+        "expiration_date": "2026-09-30",
+        "created_by": "principal"
+    },
+    {
+        "_id": "fall-spirit-week",
+        "message": "🎉 Fall spirit week is coming up—make sure you sign up for the events you want before Friday.",
+        "start_date": "2026-08-20",
+        "expiration_date": "2026-09-05",
+        "created_by": "mrodriguez"
     }
 ]
