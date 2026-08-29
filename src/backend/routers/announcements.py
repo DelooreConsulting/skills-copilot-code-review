@@ -61,7 +61,7 @@ def _validate_dates(start_date: Optional[str], expiration_date: Optional[str]) -
 @router.get("", response_model=List[Dict[str, Any]])
 @router.get("/", response_model=List[Dict[str, Any]])
 def get_announcements() -> List[Dict[str, Any]]:
-    """Get all active and future announcements, sorted by expiration date."""
+    """Get all announcements, sorted by expiration date."""
     announcements = []
     for document in announcements_collection.find().sort("expiration_date", 1):
         announcement = _normalize_announcement(document)
