@@ -126,9 +126,8 @@ def update_announcement(
         }}
     )
 
-    if result.modified_count == 0:
-        raise HTTPException(status_code=500, detail="Failed to update announcement")
-
+    if result.matched_count == 0:
+        raise HTTPException(status_code=404, detail="Announcement not found")
     updated = announcements_collection.find_one({"_id": announcement_id})
     return _normalize_announcement(updated)
 
