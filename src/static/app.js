@@ -861,9 +861,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const announcement = activeAnnouncements[0];
-    announcementBanner.innerHTML = `<span aria-hidden="true">📢</span> ${announcement.message}`;
+    announcementBanner.textContent = "";
+    const icon = document.createElement("span");
+    icon.setAttribute("aria-hidden", "true");
+    icon.textContent = "📢";
+    announcementBanner.append(icon, document.createTextNode(` ${announcement.message}`));
     announcementBanner.classList.remove("hidden");
-  }
 
   function openAnnouncementModal() {
     if (!currentUser) {
